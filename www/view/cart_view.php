@@ -36,11 +36,16 @@
                 個
                 <input type="submit" value="変更" class="btn btn-secondary">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <input type="hidden" name="cart_id" value="<?php print($cart['cart_id']); ?>">
                 <input type="hidden" name="token" value="<?php print $token;?>">
 =======
                 <input type="hidden" name="cart_id" value="<?php print(h($cart['cart_id'])); ?>">
 >>>>>>> 4506f00937008c42bb00f80fb811b200bade2725
+=======
+                <input type="hidden" name="cart_id" value="<?php print(h($cart['cart_id'])); ?>">
+                <input type="hidden" name="token" value="<?php print $token;?>">
+>>>>>>> 629631aa3063f1d53b41186eb4717b24cf7830b0
               </form>
             </td>
             <td><?php print(number_format(h($cart['price'] * $cart['amount']))); ?>円</td>
@@ -49,11 +54,16 @@
               <form method="post" action="cart_delete_cart.php">
                 <input type="submit" value="削除" class="btn btn-danger delete">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <input type="hidden" name="cart_id" value="<?php print($cart['cart_id']); ?>">
                 <input type="hidden" name="token" value="<?php print $token;?>">
 =======
                 <input type="hidden" name="cart_id" value="<?php print(h($cart['cart_id'])); ?>">
 >>>>>>> 4506f00937008c42bb00f80fb811b200bade2725
+=======
+                <input type="hidden" name="cart_id" value="<?php print(h($cart['cart_id'])); ?>">
+                <input type="hidden" name="token" value="<?php print $token;?>">
+>>>>>>> 629631aa3063f1d53b41186eb4717b24cf7830b0
               </form>
 
             </td>
