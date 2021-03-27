@@ -73,17 +73,8 @@
                   個
                 </div>
                 <input type="submit" value="変更" class="btn btn-secondary">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <input type="hidden" name="item_id" value="<?php print($item['item_id']); ?>">
-                <input type="hidden" name="token" value="<?php print $token;?>">
-=======
-                <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
->>>>>>> 4506f00937008c42bb00f80fb811b200bade2725
-=======
                 <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
                 <input type="hidden" name="token" value="<?php print $token;?>">
->>>>>>> 629631aa3063f1d53b41186eb4717b24cf7830b0
               </form>
             </td>
             <td>
@@ -96,32 +87,14 @@
                   <input type="submit" value="非公開 → 公開" class="btn btn-secondary">
                   <input type="hidden" name="changes_to" value="open">
                 <?php } ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <input type="hidden" name="item_id" value="<?php print($item['item_id']); ?>">
-                <input type="hidden" name="token" value="<?php print $token;?>">
-=======
-                <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
->>>>>>> 4506f00937008c42bb00f80fb811b200bade2725
-=======
                 <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
                 <input type="hidden" name="token" value="<?php print $token;?>">
->>>>>>> 629631aa3063f1d53b41186eb4717b24cf7830b0
               </form>
 
               <form method="post" action="admin_delete_item.php">
                 <input type="submit" value="削除" class="btn btn-danger delete">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <input type="hidden" name="item_id" value="<?php print($item['item_id']); ?>">
-                <input type="hidden" name="token" value="<?php print $token;?>">
-=======
-                <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
->>>>>>> 4506f00937008c42bb00f80fb811b200bade2725
-=======
                 <input type="hidden" name="item_id" value="<?php print(h($item['item_id'])); ?>">
                 <input type="hidden" name="token" value="<?php print $token;?>">
->>>>>>> 629631aa3063f1d53b41186eb4717b24cf7830b0
               </form>
 
             </td>
