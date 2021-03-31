@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `order_detail` (
   `order_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `purchase_price` int(11) NOT NULL
+  `purchase_price` int(11) NOT NULL,
+  `purchase_amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
