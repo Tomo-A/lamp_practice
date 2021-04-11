@@ -54,6 +54,154 @@ function get_user_cart($db, $user_id, $item_id){
 
 }
 
+function get_admin_order_history($db){
+  $sql = "
+  SELECT
+	  order_history.order_id,
+    order_date,
+    SUM(purchase_price * purchase_amount) AS TOTAL
+  FROM
+    order_history
+  INNER JOIN
+    order_detail
+  ON
+    order_history.order_id = order_detail.order_id
+  GROUP BY
+    order_history.order_id
+  ORDER BY
+    order_date DESC;
+    ";
+  
+  return fetch_all_query($db, $sql);
+}
+
+function get_order_history($db, $user_id){
+  $sql = "
+  SELECT
+	  order_history.order_id,
+    order_date,
+    SUM(purchase_price * purchase_amount) AS TOTAL
+  FROM
+    order_history
+  INNER JOIN
+    order_detail
+  ON
+    order_history.order_id = order_detail.order_id
+  where
+    user_id = ?
+  GROUP BY
+    order_history.order_id
+  ORDER BY
+    order_date DESC;
+    ";
+  
+  return fetch_all_query($db, $sql, [$user_id]);
+}
+
+function get_admin_order_detail($db, $order_id){
+  $sql = "
+  SELECT
+    order_detail.order_id,
+    order_detail.item_id, 
+    items.name,
+    purchase_price, 
+    purchase_amount,
+    SUM(purchase_price * purchase_amount) AS TOTAL 
+  FROM
+    order_detail
+  INNER JOIN 
+    order_history
+  ON 
+    order_detail.order_id = order_history.order_id 
+  INNER JOIN 
+    items 
+  ON 
+    order_detail.item_id = items.item_id
+  WHERE
+    order_history.order_id = ?
+  GROUP BY 
+    order_detail.order_id,
+    order_detail.item_id;
+  ";
+
+  return fetch_all_query($db, $sql, [$order_id]);
+}
+
+function get_order_detail($db, $user_id, $order_id){
+  $sql = "
+  SELECT
+    order_detail.order_id,
+    order_detail.item_id, 
+    purchase_price, 
+    purchase_amount,
+    items.name,
+    SUM(purchase_price * purchase_amount) AS TOTAL 
+  FROM
+    order_detail
+  INNER JOIN 
+    order_history
+  ON 
+    order_detail.order_id = order_history.order_id 
+  INNER JOIN 
+    items 
+  ON 
+    order_detail.item_id = items.item_id 
+  WHERE
+    order_history.user_id = ?
+  AND
+    order_history.order_id = ?
+  GROUP BY 
+    order_detail.order_id,
+    order_detail.item_id
+  ";
+
+  return fetch_all_query($db, $sql, [$user_id, $order_id]);
+}
+
+function get_fetch_admin_order_history($db){
+  $sql = "
+  SELECT
+	  order_history.order_id,
+    order_date,
+    SUM(purchase_price * purchase_amount) AS TOTAL
+  FROM
+    order_history
+  INNER JOIN
+    order_detail
+  ON
+    order_history.order_id = order_detail.order_id
+  GROUP BY
+    order_history.order_id
+  ORDER BY
+    order_date DESC;
+    ";
+  
+  return fetch_query($db, $sql);
+}
+
+function get_fetch_order_history($db, $user_id){
+  $sql = "
+  SELECT
+	  order_history.order_id,
+    order_date,
+    SUM(purchase_price * purchase_amount) AS TOTAL
+  FROM
+    order_history
+  INNER JOIN
+    order_detail
+  ON
+    order_history.order_id = order_detail.order_id
+  where
+    user_id = ?
+  GROUP BY
+    order_history.order_id
+  ORDER BY
+    order_date DESC;
+    ";
+  
+  return fetch_query($db, $sql, [$user_id]);
+}
+
 function add_cart($db, $user_id, $item_id ) {
   $cart = get_user_cart($db, $user_id, $item_id);
   if($cart === false){
