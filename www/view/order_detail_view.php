@@ -31,7 +31,7 @@
             <td><?php print(h($detail['name']));?></td>
             <td><?php print(h($detail['purchase_price']));?></td>
             <td><?php print(h($detail['purchase_amount']));?></td>
-            <td><?php print(h($detail['TOTAL']));?></td>
+            <td><?php print(h($detail['purchase_amount'] * $detail['purchase_price']));?></td>
           </tr>
           <?php } ?>
         </tbody>

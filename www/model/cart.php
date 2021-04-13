@@ -105,8 +105,7 @@ function get_admin_order_detail($db, $order_id){
     order_detail.item_id, 
     items.name,
     purchase_price, 
-    purchase_amount,
-    SUM(purchase_price * purchase_amount) AS TOTAL 
+    purchase_amount
   FROM
     order_detail
   INNER JOIN 
@@ -134,8 +133,7 @@ function get_order_detail($db, $user_id, $order_id){
     order_detail.item_id, 
     purchase_price, 
     purchase_amount,
-    items.name,
-    SUM(purchase_price * purchase_amount) AS TOTAL 
+    items.name
   FROM
     order_detail
   INNER JOIN 
@@ -152,13 +150,13 @@ function get_order_detail($db, $user_id, $order_id){
     order_history.order_id = ?
   GROUP BY 
     order_detail.order_id,
-    order_detail.item_id
+    order_detail.item_id;
   ";
 
   return fetch_all_query($db, $sql, [$user_id, $order_id]);
 }
 
-function get_fetch_admin_order_history($db){
+function get_fetch_admin_order_history($db, $order_id){
   $sql = "
   SELECT
 	  order_history.order_id,
@@ -170,16 +168,16 @@ function get_fetch_admin_order_history($db){
     order_detail
   ON
     order_history.order_id = order_detail.order_id
+  WHERE
+    order_history.order_id = ?
   GROUP BY
-    order_history.order_id
-  ORDER BY
-    order_date DESC;
+    order_history.order_id;
     ";
   
-  return fetch_query($db, $sql);
+  return fetch_query($db, $sql, [$order_id]);
 }
 
-function get_fetch_order_history($db, $user_id){
+function get_fetch_order_history($db, $user_id, $order_id){
   $sql = "
   SELECT
 	  order_history.order_id,
@@ -193,13 +191,13 @@ function get_fetch_order_history($db, $user_id){
     order_history.order_id = order_detail.order_id
   where
     user_id = ?
+  AND
+    order_history.order_id = ?
   GROUP BY
-    order_history.order_id
-  ORDER BY
-    order_date DESC;
+    order_history.order_id;
     ";
   
-  return fetch_query($db, $sql, [$user_id]);
+  return fetch_query($db, $sql, [$user_id, $order_id]);
 }
 
 function add_cart($db, $user_id, $item_id ) {

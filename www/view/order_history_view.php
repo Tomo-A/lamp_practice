@@ -27,7 +27,7 @@
             <td><?php print(h($history['order_date']));?></td>
             <td><?php print(h($history['TOTAL']));?></td>
             <td>
-                <form action="order_detail.php" method="get">
+                <form action="order_detail.php" method="post">
                     <input type="hidden" name="order_id" value="<?php print(h($history['order_id']))?>">
                     <input type="hidden" name="token" value="<?php print($token)?>">
                     <input type="submit" name="" value="購入明細">
