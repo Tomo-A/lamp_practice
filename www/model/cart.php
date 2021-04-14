@@ -117,10 +117,7 @@ function get_admin_order_detail($db, $order_id){
   ON 
     order_detail.item_id = items.item_id
   WHERE
-    order_history.order_id = ?
-  GROUP BY 
-    order_detail.order_id,
-    order_detail.item_id;
+    order_history.order_id = ?;
   ";
 
   return fetch_all_query($db, $sql, [$order_id]);
@@ -147,10 +144,7 @@ function get_order_detail($db, $user_id, $order_id){
   WHERE
     order_history.user_id = ?
   AND
-    order_history.order_id = ?
-  GROUP BY 
-    order_detail.order_id,
-    order_detail.item_id;
+    order_history.order_id = ?;
   ";
 
   return fetch_all_query($db, $sql, [$user_id, $order_id]);

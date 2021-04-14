@@ -13,11 +13,9 @@
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
       <table class="table table-bordered">
         <thead class="thead-light">
-        <?php foreach($histories as $history) { ?>
-        <?php print(h($history['order_id']));?>
-        <?php print(h($history['order_date']));?>
-        <?php print(h($history['TOTAL']));?>
-        <?php } ?>
+        <?php print(h('注文番号：' . $histories['order_id']));?>
+        <?php print(h('購入日時：' . $histories['order_date']));?>
+        <?php print(h('合計金額：' . $histories['TOTAL']));?>
           <tr>
             <th>商品名</th>
             <th>購入時の商品価格</th>
