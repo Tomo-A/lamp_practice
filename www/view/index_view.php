@@ -12,11 +12,21 @@
 
   <div class="container">
     <h1>商品一覧</h1>
+    <div class="sort">
+      <form method="get">
+        <select name="order">
+        <option value="new">新着順</option>
+        <option value="price_low">価格の安い順</option>
+        <option value="price_high">価格の高い順</option>
+        </select>
+        <input type="submit" name="sort" value="並べ替え">
+      </form>
+    </div>
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
     <div class="card-deck">
       <div class="row">
-      <?php foreach($items as $item){ ?>
+      <?php foreach($sort_items as $item){ ?>
         <div class="col-6 item">
           <div class="card h-100 text-center">
             <div class="card-header">

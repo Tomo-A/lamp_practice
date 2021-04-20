@@ -43,6 +43,48 @@ function get_items($db, $is_open = false){
   return fetch_all_query($db, $sql);
 }
 
+function sort_items($db, $is_open = false, $order){
+  $sql = '
+    SELECT
+    item_id,
+    name,
+    stock,
+    price,
+    image,
+    status
+  FROM
+    items
+  ';
+  if($is_open === true){
+    $sql .= '
+      WHERE
+      status = 1
+      ';
+  }
+  if($order === 'new'){
+    $sql .= '
+      ORDER BY
+      created DESC
+      ';  
+  }
+  if($order === 'price_low'){
+    $sql .= '
+      ORDER BY
+      price ASC
+    ';
+  }
+  if($order === 'price_high'){
+    $sql .= '
+      ORDER BY
+      price DESC
+    ';
+  }
+
+  return fetch_all_query($db, $sql);
+    
+}
+
+
 function get_all_items($db){
   return get_items($db);
 }
