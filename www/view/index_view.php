@@ -16,8 +16,8 @@
       <form method="get">
         <select name="order">
         <option value="new">新着順</option>
-        <option value="price_low">価格の安い順</option>
-        <option value="price_high">価格の高い順</option>
+        <option value="price_low" <?php if($order === 'price_low') print 'selected';?>>価格の安い順</option>
+        <option value="price_high" <?php if($order === 'price_high') print 'selected';?>>価格の高い順</option>
         </select>
         <input type="submit" name="sort" value="並べ替え">
       </form>

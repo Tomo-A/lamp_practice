@@ -43,7 +43,27 @@ function get_items($db, $is_open = false){
   return fetch_all_query($db, $sql);
 }
 
-function sort_items($db, $is_open = false, $order){
+function default_sort($db){
+  $sql = '
+    SELECT
+    item_id,
+    name,
+    stock,
+    price,
+    image,
+    status
+  FROM
+    items
+  WHERE
+    status = 1
+  ORDER BY
+    created DESC;';
+
+  return fetch_all_query($db, $sql);
+    
+}
+
+function sort_items($db, $order, $is_open = false){
   $sql = '
     SELECT
     item_id,
@@ -67,13 +87,13 @@ function sort_items($db, $is_open = false, $order){
       created DESC
       ';  
   }
-  if($order === 'price_low'){
+  else if($order === 'price_low'){
     $sql .= '
       ORDER BY
       price ASC
     ';
   }
-  if($order === 'price_high'){
+  else if($order === 'price_high'){
     $sql .= '
       ORDER BY
       price DESC

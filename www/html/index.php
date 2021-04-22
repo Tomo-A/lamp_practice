@@ -13,10 +13,12 @@ if(is_logined() === false){
 $db = get_db_connect();
 $user = get_login_user($db);
 $token = get_csrf_token();
-$items = get_open_items($db);
 $order = get_get('order');
+if($order === ''){
+  $order = "new";
+}
 
-$sort_items = sort_items($db, true, $order);
+$sort_items = sort_items($db, $order, true);
 
 
 
