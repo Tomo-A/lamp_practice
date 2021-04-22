@@ -1,4 +1,6 @@
 .item {
   margin-top: 10px;
 }
-
+.sort form{
+  text-align: right;
+}
